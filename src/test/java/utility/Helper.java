@@ -35,7 +35,7 @@ public class Helper {
         
         JavascriptExecutor js = (JavascriptExecutor) driver;
         
-        js.executeScript("document.body.style.zoom = 0.25");
+        js.executeScript("document.body.style.zoom = 0.50");
         
         
 	

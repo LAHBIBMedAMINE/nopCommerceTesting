@@ -8,13 +8,16 @@ public class ProductDetailPage extends PageBase{
 
 	public ProductDetailPage(WebDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@FindBy(css ="input.qty-input")
 	WebElement quantityTxBx;
 	@FindBy(css="button.button-1.add-to-cart-button")
 	WebElement addTocartBtn;
+	@FindBy(linkText = "Add your review")
+	WebElement addreviewLink;
+	@FindBy(tagName = "h1")
+	public WebElement productNameTitle;
 	
 	
 	
@@ -22,12 +25,14 @@ public class ProductDetailPage extends PageBase{
 	public void addQuantity(String quatity) {
 		quantityTxBx.clear();
 		quantityTxBx.sendKeys(quatity);
-	
 	}
 	
 	public void addtocart() {
 		addTocartBtn.click();
+	}
 	
+	public void addReviewOpnLink() {
+		addreviewLink.click();
 	}
 	
 	
