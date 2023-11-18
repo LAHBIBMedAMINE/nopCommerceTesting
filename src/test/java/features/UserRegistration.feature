@@ -2,7 +2,7 @@
 Feature: User Registration
   I want to be able to register on nopecommerce site
 
-  @tag1
+  @tag3
   Scenario Outline: User registration
     Given user on the home page
     When I click on register link 
@@ -16,7 +16,7 @@ Feature: User Registration
     And I enter "<mail>","<password>"
     And I click on log in
     Then Myaccount link is displayed
-    And I click logout
+    And I click logout again
     
     Examples: 
   | FirstName | LastName | DayofBirth | MonthofBirth | YearofBirth | mail | password | company |

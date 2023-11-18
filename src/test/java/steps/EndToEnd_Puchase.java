@@ -36,6 +36,7 @@ public class EndToEnd_Puchase extends TestBase{
 	
 	@Given("AS registred User I logged in home Page")
 	public void as_registred_user_i_logged_in_home_page() {
+		driver.navigate().to("https://demo.nopcommerce.com/");
 		// use faker to generate fake data for registration
 	    Faker fakeData = new Faker();
 	    String FirstName = fakeData.name().firstName();
@@ -221,6 +222,7 @@ public class EndToEnd_Puchase extends TestBase{
 	public void i_log_out() {
 	    homepgObj.Userlogout();
 	    assertTrue(driver.getCurrentUrl().contains("https://demo.nopcommerce.com/"));
+	    driver.navigate().to("https://demo.nopcommerce.com/");
 	}
 
 }

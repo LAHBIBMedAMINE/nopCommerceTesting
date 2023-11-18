@@ -9,15 +9,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.CapabilityType;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
-import utility.Helper;
 
 public class TestBase extends AbstractTestNGCucumberTests{
 	
@@ -39,7 +36,6 @@ public class TestBase extends AbstractTestNGCucumberTests{
 			
 		}
 	    
-
 	    @BeforeClass
 	    @Parameters({"browser"})
 	    public void startDriver(@Optional("chrome") String browserName){
@@ -56,19 +52,20 @@ public class TestBase extends AbstractTestNGCucumberTests{
 
 
 	    }
+	    
 	    @AfterClass
 	    public void teardown(){
 	        driver.quit();
 	    }
 	    
+	    /*
 	    @AfterMethod
 	    public void takescreenshotFailure(ITestResult result) {
 	    	if (ITestResult.FAILURE == result.getStatus()) {
 	    		System.out.println("(-----------------Failed we are Taking ScreenShot----------------)");
 				Helper.captureScreenShot(driver, result.getName());
-				
 			}
-	    	
-	    }
 
+	    }
+	    */
 }

@@ -21,6 +21,7 @@ public class HomePage extends PageBase{
 	
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000));
 	
+	
 	@FindBy (partialLinkText = "Register")
 	WebElement registerlink;
 	
@@ -48,6 +49,8 @@ public class HomePage extends PageBase{
 	
 	@FindBy(partialLinkText = "Log out")
 	public WebElement logoutlink;
+	@FindBy(linkText = "My account")
+	WebElement myaccountlink;
 	
 	
 	
@@ -73,12 +76,13 @@ public class HomePage extends PageBase{
 		closeNotificationBtn.click();
 		wait.until(ExpectedConditions.invisibilityOf(closeNotificationBtn));
 	}
-	
-	
+	public void openMyAccountLink() {
+		myaccountlink.click();
+		
+	}
 	
 	public void Userlogout(){
 
     	logoutlink.click();
-
     }
 }

@@ -4,7 +4,10 @@ import io.cucumber.testng.CucumberOptions;
 import steps.TestBase;
 
 @CucumberOptions(features = "src/test/java/features"
-,glue= {"steps"}, plugin = {"pretty","html:target/cucumber-html-report.html"})
-public class TestRunner extends TestBase {
+,glue= {"steps"}, plugin = {"pretty","html:target/HtmlReports"},
+dryRun = false)
+public class FuLLTestsRunner extends TestBase {
+	
+	
 
 }

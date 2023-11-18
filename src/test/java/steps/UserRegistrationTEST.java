@@ -21,6 +21,7 @@ public class UserRegistrationTEST extends TestBase{
 	
 	@Given("user on the home page")
 	public void user_on_the_home_page() {
+		driver.navigate().to("https://demo.nopcommerce.com/");
 		//Obj declarations
 		homePageObj = new HomePage(driver);
 		// Verifying the right URL
@@ -77,8 +78,6 @@ public class UserRegistrationTEST extends TestBase{
 
 	@When("I enter {string},{string}")
 	public void i_enter(String Email, String Password) {
-		
-		
 		//Steps
 		loginPgObj.userLogin(Email,Password);
 		
@@ -94,12 +93,12 @@ public class UserRegistrationTEST extends TestBase{
 		//verify i'm logged
 		assertTrue(loginPgObj.myAccountLink.isDisplayed());
 	}
-
-
-	@Then("I click logout")
-	public void i_click_logout() {
-	    registerPgObj.Userlogout();
+	
+	@Then("I click logout again")
+	public void i_click_logout_again() {
+		registerPgObj.Userlogout();
 	    assertTrue(driver.getCurrentUrl().contains("https://demo.nopcommerce.com/"));
+	    driver.navigate().to("https://demo.nopcommerce.com/");
 	}
 
 

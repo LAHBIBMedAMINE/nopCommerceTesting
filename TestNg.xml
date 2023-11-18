@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite parallel="false" name="NopCommerce regressionSuite">
+	<parameter name="browser" value="chrome"></parameter>
+  <test name="registraion Suite">
+    <classes>
+      <class name="steps.ChangeMyPassword"/>
+      <class name="steps.EndToEnd_Puchase"/>
+      <class name="steps.UserRegistrationTEST"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
