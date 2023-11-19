@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
@@ -31,6 +32,16 @@ public class TestBase extends AbstractTestNGCucumberTests{
 			option.addArguments("--download-dir="+downloadpath+"\\downloads");
 			return option;
 			
+		}
+	    
+	    public static FirefoxOptions firefoxOption() {
+			FirefoxOptions option = new FirefoxOptions();
+			option.addPreference("browser.download.folderList", 2);
+			option.addPreference("browser.download.dir", downloadpath);
+			option.addPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
+			option.addPreference("browser.download.manager.showWhenStarting", false);
+			option.addPreference("pdfjs.disabled", true);
+			return option;
 		}
 	   
 	   //*********************************************************************** 
