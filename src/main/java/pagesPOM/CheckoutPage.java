@@ -138,6 +138,7 @@ WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
 		}else {option.click(); }
 		
 		// continue
+		wait.until(ExpectedConditions.elementToBeClickable(shippingMethodContinueBtn));
 		shippingMethodContinueBtn.click();
 	}
 	

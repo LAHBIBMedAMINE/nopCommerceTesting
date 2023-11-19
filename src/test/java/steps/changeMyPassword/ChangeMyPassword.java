@@ -1,4 +1,4 @@
-package steps;
+package steps.changeMyPassword;
 
 import static org.testng.Assert.assertTrue;
 
@@ -11,11 +11,12 @@ import pagesPOM.HomePage;
 import pagesPOM.LoginPage;
 import pagesPOM.MyAccountPage;
 import pagesPOM.RegisterPage;
+import steps.TestBase;
 
 public class ChangeMyPassword extends TestBase{
 	
-	//PagesPOMs declarations
-		HomePage homePageObj;
+	    //PagesPOMs declarations
+		HomePage homePgObj;
 		RegisterPage registerPgObj;
 		LoginPage loginPgObj;
 		MyAccountPage MyAccountPgObj;
@@ -27,76 +28,53 @@ public class ChangeMyPassword extends TestBase{
 	    String DayofBirth ="25";
 	    String MonthofBirth ="June";
 	    String YearofBirth ="1989";
-	    String mail = fakeData.internet().emailAddress();
+	    String  mail = fakeData.internet().emailAddress();
 	    String password = fakeData.internet().password(6, 10);
-	    String newpassword = fakeData.internet().password(6, 10);
 	    String company =fakeData.company().name();
-	    
-	    
-    @Given("User on the home page")
-    public void user_on_the_home_page() {
-    driver.navigate().to("https://demo.nopcommerce.com/");
-	//Obj declarations
-	homePageObj = new HomePage(driver);
-	// Verifying the right URL
-	assertTrue(driver.getCurrentUrl().contains("https://demo.nopcommerce.com/")); 
-        
-    }
-
-    @When("I Click on register link")
-    public void i_click_on_register_link() {
-	//Obj declarations
-	registerPgObj = new RegisterPage(driver);
-	//Steps
-	homePageObj.openRegistrationLink();
-	//verify Register title display
-	assertTrue(registerPgObj.registerTitle.getText().contains("Register")); 
-    }
-	    
-   
-	@When("I fill the registration form")
-	public void i_fill_the_registration_form() {
-		//Steps
-		registerPgObj.userRegistration(FirstName, LastName, DayofBirth, MonthofBirth, YearofBirth, mail, password, company);
-	}
-
-	@When("I click on register and continue")
-	public void i_click_on_register_and_continue() {
-		registerPgObj.RegisterButtonClick();
-		//verify success registration
-		assertTrue(registerPgObj.ResultMessage.getText().contains("Your registration completed"));
-		//continue to home page
-		registerPgObj.ContinueAfterRegistration();
-		assertTrue(driver.getCurrentUrl().contains("https://demo.nopcommerce.com/"));
-	}
-	
-	@When("I click on login Link")
-	public void i_click_on_login_link() {
-		//Obj declarations
-		loginPgObj = new LoginPage(driver);
-		//Steps
-	    homePageObj.openLoginLink();
-	    //verify login page
-	    assertTrue(loginPgObj.signUpMsg.getText().contains("Welcome, Please Sign In!"));
-	}
-
-	@When("I log to my new account")
-	public void i_log_to_my_new_account() {
-		loginPgObj.userLogin(mail,password);
-		loginPgObj.loginBTnClick();
-		//verify i'm logged
-		assertTrue(loginPgObj.myAccountLink.isDisplayed());
-	}
+	    String newpassword = fakeData.internet().password(6, 10);
+		@Given("^I  register on a website using fake account$")
+		public void I_register_on_a_website_using_fake_account() {
+			driver.navigate().to("https://demo.nopcommerce.com/");
+		    //registration Phase
+		    
+		    homePgObj = new HomePage(driver);
+		    registerPgObj = new RegisterPage(driver);
+		    //steps
+		    homePgObj.openRegistrationLink();
+		    System.out.println(mail+" // "+password);
+		    registerPgObj.userRegistration(FirstName,LastName,DayofBirth,MonthofBirth,YearofBirth,mail,password,company);
+		    registerPgObj.RegisterButtonClick();
+		  
+		}
+		
+		@When("^As  registered user I Login to my account$")
+		public void As_registered_user_I_Login_to_my_account() {
+			//login Phase
+			//PageObj initiation
+			loginPgObj = new LoginPage(driver);
+		  	//steps
+			homePgObj.openLoginLink();
+		  	System.out.println(mail+" // "+password);
+		  	loginPgObj.userLogin(mail, password);
+		  	loginPgObj.loginBTnClick();
+		  	//verification of login
+		  	assertTrue(loginPgObj.myAccountLink.isDisplayed());
+		}
 
 	@When("I click on myAccount")
 	public void i_click_on_my_account() {
-		homePageObj.openMyAccountLink();
+		//PageObj initiation
+		homePgObj = new HomePage(driver);
+		//Steps
+		homePgObj.openMyAccountLink();
 		
 	}
 
 	@When("I click on change my password")
 	public void i_click_on_change_my_password() {
+		//PageObj initiation
 		MyAccountPgObj = new MyAccountPage(driver);
+		//open link to change password
 		MyAccountPgObj.ChangePasswordlink();
 	    
 	}
@@ -123,7 +101,7 @@ public class ChangeMyPassword extends TestBase{
 	@When("I log in with my new password")
 	public void i_log_in_with_my_new_password() {
 		//Steps
-	    homePageObj.openLoginLink();
+		homePgObj.openLoginLink();
 	    //verify login page
 	    assertTrue(loginPgObj.signUpMsg.getText().contains("Welcome, Please Sign In!"));
 	    loginPgObj.userLogin(mail,newpassword);

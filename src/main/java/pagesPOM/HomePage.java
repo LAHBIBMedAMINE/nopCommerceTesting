@@ -26,7 +26,7 @@ public class HomePage extends PageBase{
 	WebElement registerlink;
 	
 	@FindBy (partialLinkText = "Log in")
-	WebElement Loginlink;
+	public WebElement Loginlink;
 	
 	@FindBy(id="small-searchterms")
 	WebElement searchTxBox;
@@ -52,11 +52,15 @@ public class HomePage extends PageBase{
 	@FindBy(linkText = "My account")
 	WebElement myaccountlink;
 	
+	@FindBy(partialLinkText = "Contact us")
+	WebElement contactUsLink;
 	
 	
 	
 	
-	
+	public void openContactusLink() {
+		contactUsLink.click();
+	}
 	public void openRegistrationLink() {
 		registerlink.click();
 	}

@@ -1,4 +1,4 @@
-package steps;
+package steps.addReview;
 
 import static org.testng.Assert.assertTrue;
 
@@ -12,6 +12,7 @@ import pagesPOM.ProductDetailPage;
 import pagesPOM.RegisterPage;
 import pagesPOM.ResultSeachPage;
 import pagesPOM.ReviewPage;
+import steps.TestBase;
 
 public class AddReviews extends TestBase{
 	
@@ -24,60 +25,64 @@ public class AddReviews extends TestBase{
 	
 
 	
-	// use faker to generate fake data for registration
+	
+    String reviewText= "I will give it ";
+    String reviewTitleText="I love Apple" ;
+    
+ // use faker to generate fake data for registration
     Faker fakeData = new Faker();
     String FirstName = fakeData.name().firstName();
     String LastName = fakeData.name().lastName();
     String DayofBirth ="25";
     String MonthofBirth ="June";
     String YearofBirth ="1989";
-    String mail = fakeData.internet().emailAddress();
+    String  mail = fakeData.internet().emailAddress();
     String password = fakeData.internet().password(6, 10);
     String company =fakeData.company().name();
-    String reviewText= "I will give it ";
-    String reviewTitleText="I love Apple" ;
-    
 	
-	@Given("registred user logged to website")
-	public void registred_user_logged_to_website() {
-		//Obj declarations
+	@Given("I register on a website using fake account")
+	public void I_register_on_a_website_using_fake_account() {
+		driver.navigate().to("https://demo.nopcommerce.com/");
+	    //registration Phase
+	    
 		homePageObj = new HomePage(driver);
 		registerPgObj = new RegisterPage(driver);
-		loginPgObj = new LoginPage(driver);
-		
-		//Registration Phase
-		System.out.println(mail);
-		System.out.println(password);
-		
-		assertTrue(driver.getCurrentUrl().contains("https://demo.nopcommerce.com/"));
-		homePageObj.openRegistrationLink();
-		assertTrue(registerPgObj.registerTitle.getText().contains("Register"));
-		registerPgObj.userRegistration(FirstName, LastName, DayofBirth, MonthofBirth, YearofBirth, mail, password, company);
-		registerPgObj.RegisterButtonClick();
-		assertTrue(registerPgObj.ResultMessage.getText().contains("Your registration completed"));
-		//login phase
-		homePageObj.openLoginLink();
-	    assertTrue(loginPgObj.signUpMsg.getText().contains("Welcome, Please Sign In!"));
-	    loginPgObj.userLogin(mail,password);
-	    loginPgObj.loginBTnClick();
+	    //steps
+	    homePageObj.openRegistrationLink();
+	    System.out.println(mail+" // "+password);
+	    registerPgObj.userRegistration(FirstName,LastName,DayofBirth,MonthofBirth,YearofBirth,mail,password,company);
+	    registerPgObj.RegisterButtonClick();
+	  
 	}
-
+	
+	@When("As registered user I Login to my account")
+	public void As_registered_user_I_Login_to_my_account() {
+		//login Phase
+		//PageObj initiation
+		loginPgObj = new LoginPage(driver);
+	  	//steps
+	    homePageObj.openLoginLink();
+	  	System.out.println(mail+" // "+password);
+	  	loginPgObj.userLogin(mail, password);
+	  	loginPgObj.loginBTnClick();
+	  	//verification of login
+	  	assertTrue(loginPgObj.myAccountLink.isDisplayed());
+	}
+    
 	@When("I search for product")
-	public void i_search_for_product(String ProductName) {
-		//Obj declarations
+	public void i_search_for_product_in_addReview(String ProductName) {
+		//PageObj initiation
+		homePageObj = new HomePage(driver);
 		resultSeachPgObj = new ResultSeachPage(driver);
 		
 		//search for product
 		homePageObj.SearchForProduct(ProductName);
-		assertTrue(resultSeachPgObj.resultProductSelector.isDisplayed());
-		
-		
-		
+		assertTrue(resultSeachPgObj.resultProductSelector.isDisplayed());	
 	}
 	
 	@When("i enter in product detail")
 	public void i_enter_in_product_detail(String ProductName) {
-		//Obj declarations
+		//PageObj initiation
 		productDetailPgObj = new ProductDetailPage(driver);
 		// product detail page
 		resultSeachPgObj.accessProductdetail();
@@ -92,7 +97,7 @@ public class AddReviews extends TestBase{
 
 	@When("I fill the review form")
 	public void i_fill_the_review_form() {
-		//Obj declarations
+		//PageObj initiation
 		reviewPgObj = new ReviewPage(driver);
 		
 		// add five reviews

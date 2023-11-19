@@ -1,62 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-11-18T15:51:23 WAT" name="Default suite" finished-at="2023-11-18T15:52:05 WAT" duration-ms="41516">
+  <suite started-at="2023-11-19T12:58:01 WAT" name="Default suite" finished-at="2023-11-19T12:58:29 WAT" duration-ms="27902">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.AddReview_TestRunner@5b218417]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.UserRegistration_TestRunner@cb0755b]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2023-11-18T15:51:23 WAT" name="Default test" finished-at="2023-11-18T15:52:05 WAT" duration-ms="41516">
-      <class name="runner.AddReview_TestRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runner.AddReview_TestRunner@5b218417]" started-at="2023-11-18T15:51:23 WAT" name="setUpClass" finished-at="2023-11-18T15:51:24 WAT" duration-ms="1021" status="PASS">
+    <test started-at="2023-11-19T12:58:01 WAT" name="Default test" finished-at="2023-11-19T12:58:29 WAT" duration-ms="27902">
+      <class name="runner.UserRegistration_TestRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runner.UserRegistration_TestRunner@cb0755b]" started-at="2023-11-19T12:58:02 WAT" name="setUpClass" finished-at="2023-11-19T12:58:03 WAT" duration-ms="1430" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@22bfd4b]]>
+                <![CDATA[org.testng.TestRunner@64da6cbd]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method is-config="true" signature="startDriver(java.lang.String)[pri:0, instance:runner.AddReview_TestRunner@5b218417]" started-at="2023-11-18T15:51:24 WAT" name="startDriver" finished-at="2023-11-18T15:51:29 WAT" duration-ms="5031" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.UserRegistration_TestRunner@cb0755b]" started-at="2023-11-19T12:58:03 WAT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-11-19T12:58:17 WAT" duration-ms="13734" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- startDriver -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.AddReview_TestRunner@5b218417]" started-at="2023-11-18T15:51:29 WAT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-11-18T15:52:05 WAT" duration-ms="35333" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA["add review"]]>
+                <![CDATA["User registration"]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA["Add review"]]>
+                <![CDATA["User Registration"]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:runner.AddReview_TestRunner@5b218417]" started-at="2023-11-18T15:52:05 WAT" name="teardown" finished-at="2023-11-18T15:52:05 WAT" duration-ms="0" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runner.UserRegistration_TestRunner@cb0755b]" started-at="2023-11-19T12:58:17 WAT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-11-19T12:58:29 WAT" duration-ms="12572" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["User registration"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["User Registration"]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- teardown -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runner.AddReview_TestRunner@5b218417]" started-at="2023-11-18T15:52:05 WAT" name="tearDownClass" finished-at="2023-11-18T15:52:05 WAT" duration-ms="57" status="PASS">
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runner.UserRegistration_TestRunner@cb0755b]" started-at="2023-11-19T12:58:29 WAT" name="tearDownClass" finished-at="2023-11-19T12:58:29 WAT" duration-ms="55" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-      </class> <!-- runner.AddReview_TestRunner -->
+      </class> <!-- runner.UserRegistration_TestRunner -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

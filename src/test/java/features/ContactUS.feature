@@ -17,18 +17,13 @@
 ## (Comments)
 #Sample Feature Definition Template
 @tag
-Feature: Change my password
-  i want to be able to change my Password
+Feature: Title of your feature
+  I want to use this template for my feature file
 
   @tag1
-  Scenario: Change my password
-    Given I  register on a website using fake account
-    And As  registered user I Login to my account
-    When I click on myAccount
-    And I click on change my password
-    And I fill the form of changing passwor
-    Then Msg your Password was changed
-    When I logOut
-    And I log in with my new password
-    Then I successfuly login
-    And I logOut
+  Scenario: Title of your scenario
+    Given unregistred user on home page
+    When i click on Contact us
+    And i fill the Contact Us form
+    And i submit
+    Then sucessful Msg is displayed

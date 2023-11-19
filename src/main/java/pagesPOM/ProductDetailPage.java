@@ -18,6 +18,8 @@ public class ProductDetailPage extends PageBase{
 	WebElement addreviewLink;
 	@FindBy(tagName = "h1")
 	public WebElement productNameTitle;
+	@FindBy(css = "button.button-2.email-a-friend-button")
+	WebElement emailBtn;
 	
 	
 	
@@ -34,7 +36,9 @@ public class ProductDetailPage extends PageBase{
 	public void addReviewOpnLink() {
 		addreviewLink.click();
 	}
-	
+	public void EmailtoFirendOpnLink() {
+		emailBtn.click();
+	}
 	
 	
 

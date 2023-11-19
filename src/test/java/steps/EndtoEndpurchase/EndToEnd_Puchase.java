@@ -1,4 +1,4 @@
-package steps;
+package steps.EndtoEndpurchase;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -19,6 +19,7 @@ import pagesPOM.ProductDetailPage;
 import pagesPOM.RegisterPage;
 import pagesPOM.ResultSeachPage;
 import pagesPOM.ShoppingCartPage;
+import steps.TestBase;
 
 
 public class EndToEnd_Puchase extends TestBase{
@@ -31,50 +32,51 @@ public class EndToEnd_Puchase extends TestBase{
  	ShoppingCartPage shoppingCartPgObj;
  	CheckoutPage CheckoutPgObj;
  	OrderInformationPage OrderInformationPgObj;
+ 	
+ // use faker to generate fake data for registration
+    Faker fakeData = new Faker();
+    String FirstName = fakeData.name().firstName();
+    String LastName = fakeData.name().lastName();
+    String DayofBirth ="25";
+    String MonthofBirth ="June";
+    String YearofBirth ="1989";
+    String  mail = fakeData.internet().emailAddress();
+    String password = fakeData.internet().password(6, 10);
+    String company =fakeData.company().name();
 	
-	
-	
-	@Given("AS registred User I logged in home Page")
-	public void as_registred_user_i_logged_in_home_page() {
+	@Given("I register on a website using fake account")
+	public void I_register_on_a_website_using_fake_account() {
 		driver.navigate().to("https://demo.nopcommerce.com/");
-		// use faker to generate fake data for registration
-	    Faker fakeData = new Faker();
-	    String FirstName = fakeData.name().firstName();
-	    String LastName = fakeData.name().lastName();
-	    String DayofBirth ="25";
-	    String MonthofBirth ="June";
-	    String YearofBirth ="1989";
-	    String mail = fakeData.internet().emailAddress();
-	    String password = fakeData.internet().password(6, 10);
-	    String company =fakeData.company().name();
-	    
-	    
-	    
 	    //registration Phase
-	    //Obj declaration
+	    
 	    homepgObj = new HomePage(driver);
 	    RegisterPgObj = new RegisterPage(driver);
 	    //steps
 	    homepgObj.openRegistrationLink();
+	    System.out.println(mail+" // "+password);
 	  	RegisterPgObj.userRegistration(FirstName,LastName,DayofBirth,MonthofBirth,YearofBirth,mail,password,company);
 	  	RegisterPgObj.RegisterButtonClick();
-	  	//login Phase
-	  	//Obj declaration
-	  	loginObj = new LoginPage(driver);
+	  
+	}
+	
+	@When("As registered user I Login to my account")
+	public void As_registered_user_I_Login_to_my_account() {
+		//login Phase
+		//PageObj initiation
+	    loginObj = new LoginPage(driver);
+	    homepgObj = new HomePage(driver);
 	  	//steps
 	  	homepgObj.openLoginLink();
+	  	System.out.println(mail+" // "+password);
 	  	loginObj.userLogin(mail, password);
 	  	loginObj.loginBTnClick();
 	  	//verification of login
 	  	assertTrue(loginObj.myAccountLink.isDisplayed());
-	  	
-	  
-	    
 	}
 	
 	@When("I search for First available {string}")
 	public void i_search_for_first_available(String product1) {
-				//Obj declaration
+				//PageObj initiation
 				resultSearchPgObj = new ResultSeachPage(driver);
 				//step1 search for product
 			    homepgObj.SearchForProduct(product1);
@@ -86,7 +88,7 @@ public class EndToEnd_Puchase extends TestBase{
 
 	@When("I add First products to cart")
 	public void i_add_first_products_to_cart() {
-		//Obj declaration
+		//PageObj initiation
 		productDetailPgObj = new ProductDetailPage(driver);
 		//Steps
 		productDetailPgObj.addQuantity("3");
@@ -115,7 +117,7 @@ public class EndToEnd_Puchase extends TestBase{
 
 	@When("I proceed to my shopping cart {string} {string}")
 	public void i_proceed_to_my_shopping_cart(String product1,String product2) {
-		//Obj declaration
+		//PageObj initiation
 		shoppingCartPgObj = new ShoppingCartPage(driver);
 		
 		homepgObj.hoveroverMenu(homepgObj.topcartLink, false);
@@ -148,21 +150,20 @@ public class EndToEnd_Puchase extends TestBase{
 	}
 	
 	//filling form
-			Faker fakeData = new Faker();
-			String country ="United States";
-			String state ="California";
-			String city =fakeData.address().city();
-			String adress1 =fakeData.address().streetAddress();
-			String adress2 =fakeData.address().streetAddress();
-			String zipcode =fakeData.address().zipCode();
-			String phone = fakeData.phoneNumber().cellPhone();
-			String fax = fakeData.phoneNumber().phoneNumber();
+	String country ="United States";
+	String state ="California";
+	String city =fakeData.address().city();
+	String adress1 =fakeData.address().streetAddress();
+	String adress2 =fakeData.address().streetAddress();
+	String zipcode =fakeData.address().zipCode();
+	String phone = fakeData.phoneNumber().cellPhone();
+	String fax = fakeData.phoneNumber().phoneNumber();
 
 	@When("I fill the adress form")
 	public void i_fill_the_adress_form() {
 		
 		
-		//Obj declaration
+		//PageObj initiation
 		CheckoutPgObj = new CheckoutPage(driver) ;
 	    
 		//fill the forms
@@ -181,7 +182,6 @@ public class EndToEnd_Puchase extends TestBase{
 	}
 	
 	// card info
-	String FirstName = fakeData.name().firstName();
 	String cardNumber =fakeData.finance().creditCard(CreditCardType.VISA);
 	List<String> cardInfo = List.of("Visa",FirstName,cardNumber,"06","2027","396");
 	
@@ -205,7 +205,7 @@ public class EndToEnd_Puchase extends TestBase{
 
 	@Then("I download the order")
 	public void i_download_the_order() throws InterruptedException {
-		//Obj declaration
+		//PageObj initiation
 		OrderInformationPgObj = new OrderInformationPage(driver);
 		
 		

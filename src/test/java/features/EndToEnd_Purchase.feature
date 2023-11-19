@@ -21,9 +21,10 @@ Feature: End to End Purshase
   I want to login, search for product, choose 2 product to purhcase, select shipment options (3), select payment options
   download the order and logout
 
-  @tag2
+  @tag1
   Scenario Outline: End to End Purshase
-    Given AS registred User I logged in home Page
+  	Given I register on a website using fake account
+    And As registered user I Login to my account
     When I search for First available "<First_product>"
     And I add First products to cart
     When I search for Second available "<Second_product>"

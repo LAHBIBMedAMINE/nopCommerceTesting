@@ -36,7 +36,7 @@ public class TestBase extends AbstractTestNGCucumberTests{
 			
 		}
 	    
-	    @BeforeClass
+	    
 	    @Parameters({"browser"})
 	    public void startDriver(@Optional("chrome") String browserName){
 	    	if (browserName.equalsIgnoreCase("chrome")) {
@@ -53,7 +53,7 @@ public class TestBase extends AbstractTestNGCucumberTests{
 
 	    }
 	    
-	    @AfterClass
+	    
 	    public void teardown(){
 	        driver.quit();
 	    }

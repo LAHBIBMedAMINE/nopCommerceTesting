@@ -17,16 +17,31 @@
 ## (Comments)
 #Sample Feature Definition Template
 @tag
-Feature: Add review
-  I want to be able add reviews
+Feature: Email a product to a friend
+  I want to be able to send an email a product to a friend
 
   @tag1
-  Scenario: add review
+  Scenario: As registred User Email a product to a friend
     Given I register on a website using fake account
     And As registered user I Login to my account
-    When I search for product
+    When I search for Product
       | Apple MacBook Pro 13-inch |
-    And i enter in product detail
+    And I access to product details
       | Apple MacBook Pro 13-inch |
-    When i click on add review
-    And I fill the review form
+    When I click on Email to Friend
+    And I fill the From
+    And I send the email
+    Then A sucess Msg is displayed
+    And I logout
+
+  @tag2
+  Scenario: As Non registred User Email a product to a friend
+    Given non registred user on the WebSite
+    When I search for Product
+      | Apple MacBook Pro 13-inch |
+    And I access to product details
+      | Apple MacBook Pro 13-inch |
+    When I click on Email to Friend
+    And I fill the From
+    And I send the email
+    Then A fail Msg is displayed

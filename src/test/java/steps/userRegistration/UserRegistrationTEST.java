@@ -1,4 +1,4 @@
-package steps;
+package steps.userRegistration;
 
 import static org.testng.Assert.assertTrue;
 
@@ -8,6 +8,7 @@ import io.cucumber.java.en.When;
 import pagesPOM.HomePage;
 import pagesPOM.LoginPage;
 import pagesPOM.RegisterPage;
+import steps.TestBase;
 
 public class UserRegistrationTEST extends TestBase{
 	
@@ -22,7 +23,7 @@ public class UserRegistrationTEST extends TestBase{
 	@Given("user on the home page")
 	public void user_on_the_home_page() {
 		driver.navigate().to("https://demo.nopcommerce.com/");
-		//Obj declarations
+		//PageObj initiation
 		homePageObj = new HomePage(driver);
 		// Verifying the right URL
 		assertTrue(driver.getCurrentUrl().contains("https://demo.nopcommerce.com/"));  
@@ -31,7 +32,7 @@ public class UserRegistrationTEST extends TestBase{
 	
 	@When("I click on register link")
 	public void i_click_on_register_link() {
-		//Obj declarations
+		//PageObj initiation
 		registerPgObj = new RegisterPage(driver);
 		//Steps
 		homePageObj.openRegistrationLink();
@@ -67,7 +68,7 @@ public class UserRegistrationTEST extends TestBase{
 	
 	@When("I click on log in Link")
 	public void i_click_on_log_in_link() {
-		//Obj declarations
+		//PageObj initiation
 		loginPgObj = new LoginPage(driver);
 		//Steps
 	    homePageObj.openLoginLink();
