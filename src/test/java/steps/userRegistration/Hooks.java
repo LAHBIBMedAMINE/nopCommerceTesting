@@ -11,7 +11,7 @@ public class Hooks extends TestBase{
 	
 	@Before
 	public void setup() {
-		startDriver("chrome");
+		startDriver(browserChoice);
 		
 		
 		

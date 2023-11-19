@@ -9,8 +9,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.CapabilityType;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
@@ -30,12 +28,15 @@ public class TestBase extends AbstractTestNGCucumberTests{
 			option.setExperimentalOption("prefs", chromePrefs);
 			option.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 			
-			//option.addArguments("--download-dir=C:\\Users\\LAHBIB MOHAMED AMINE\\eclipse-workspace\\DDIS\\downloads");
 			option.addArguments("--download-dir="+downloadpath+"\\downloads");
 			return option;
 			
 		}
-	    
+	   
+	   //*********************************************************************** 
+	  //you can use this to change the browser in the hooks for cucumber
+	    public String browserChoice ="chrome"; 
+	  //*********************************************************************** 
 	    
 	    @Parameters({"browser"})
 	    public void startDriver(@Optional("chrome") String browserName){
